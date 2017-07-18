@@ -1,0 +1,24 @@
+{
+  "name": "req",
+  "version": "1.0.0",
+  "description": "Simple HTTP(S) request library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trgwii/req.git"
+  },
+  "keywords": [
+    "request",
+    "http",
+    "https"
+  ],
+  "author": "Thomas Rory Gummerson <thomas@gummerson.no> (https://trgwii.no)",
+  "license": "Beerware",
+  "bugs": {
+    "url": "https://github.com/trgwii/req/issues"
+  },
+  "homepage": "https://github.com/trgwii/req#readme"
+}
