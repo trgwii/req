@@ -23,7 +23,7 @@ const req = url =>
 	new Promise((resolve, reject) =>
 		chooseProto(url)
 			.get(url, resolve)
-				.once('error', reject));
+			.once('error', reject));
 
 /**
  * Resolves to the body of an HTTP response as a string
