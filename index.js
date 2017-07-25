@@ -15,23 +15,12 @@ const chooseProto = url =>
 		: http;
 
 /**
- * Resolves to a HTTP(S) response object
- * @param {string} url - The URL to request from
- * @returns {Promise<object>} - The HTTP response object
- */
-const req = url =>
-	new Promise((resolve, reject) =>
-		chooseProto(url)
-			.get(url, resolve)
-			.once('error', reject));
-
-/**
  * Resolves to the body of an HTTP response as a string
  * @param {string} url - The URL to request from
  * @returns {Promise<string>} - The response data
  */
 const get = url =>
-	req(url).then((res, data = '') =>
+	get.stream(url).then((res, data = '') =>
 		new Promise((resolve, reject) =>
 			res.once('error', reject)
 				.on('data', d => data += d)
@@ -42,14 +31,18 @@ const get = url =>
  * @param {string} url - The URL to request from
  * @returns {Promise<object>} - The HTTP response object
  */
-get.stream = req;
+get.stream = url =>
+	new Promise((resolve, reject) =>
+		chooseProto(url)
+			.get(url, resolve)
+			.once('error', reject));
 
 /**
  * Resolves to HTTP response headers
  * @param {string} url - The URL to request from
  * @returns {Promise<object>} - The response headers
  */
-get.headers = url => req(url).then(res => res.headers);
+get.headers = url => get.stream(url).then(res => res.headers);
 
 /**
  * Resolves to the parsed json object of a response
